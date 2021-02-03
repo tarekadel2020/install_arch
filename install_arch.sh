@@ -17,14 +17,13 @@ User_Name="tarek"
 
 ## All Variable ##
 
-# if [ $(echo "$LEVEL" |tr [:upper:] [:lower:]) = "sys" ]
 
-#if [ $(echo "$Bios_Type" |tr [:upper:] [:lower:]) = "uefi" ]; then
-#       mkfs.fat -n ESP -F32 $Boot_Partiton
-#fi
-#if [ $(echo "$Bios_Type" |tr [:upper:] [:lower:]) = "bios" ]; then
-#        mkfs.ext4 -L boot $Boot_Partiton
-#fi
+if [ $(echo "$Bios_Type" |tr [:upper:] [:lower:]) = "uefi" ]; then
+       [-z $Boot_Partiton ] || mkfs.fat -n ESP -F32 $Boot_Partiton
+fi
+if [ $(echo "$Bios_Type" |tr [:upper:] [:lower:]) = "bios" ]; then
+        [-z $Boot_Partiton ] || mkfs.ext4 -L boot $Boot_Partiton
+fi
 
 mkfs.ext4 $Root_Partiton
 
