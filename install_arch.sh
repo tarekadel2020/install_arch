@@ -17,14 +17,14 @@ User_Name="tarek"
 
 ## All Variable ##
 
-## if [ $(echo "$LEVEL" |tr [:upper:] [:lower:]) = "sys" ]
+# if [ $(echo "$LEVEL" |tr [:upper:] [:lower:]) = "sys" ]
 
-if [ $(echo "$Bios_Type" |tr [:upper:] [:lower:]) = "uefi" ]; then
-        mkfs.fat -n ESP -F32 $Boot_Partiton
-fi
-if [ $(echo "$Bios_Type" |tr [:upper:] [:lower:]) = "bios" ]; then
-        mkfs.ext4 -L boot $Boot_Partiton
-fi
+#if [ $(echo "$Bios_Type" |tr [:upper:] [:lower:]) = "uefi" ]; then
+#       mkfs.fat -n ESP -F32 $Boot_Partiton
+#fi
+#if [ $(echo "$Bios_Type" |tr [:upper:] [:lower:]) = "bios" ]; then
+#        mkfs.ext4 -L boot $Boot_Partiton
+#fi
 
 mkfs.ext4 $Root_Partiton
 
@@ -38,7 +38,8 @@ mount $Root_Partiton /mnt
 
 swapon $Swap_Partiton
 
-pacstrap /mnt base linux linux-firmware vim nano
+pacstrap /mnt base base-devel linux linux-firmware vim nano net-tools
+
 
 ## pacstrap /mnt base base-devel linux linux-firmware vim nano
 
@@ -105,68 +106,68 @@ fi
 
 ## (gnome - kde - xfce - mate - cinnamon - lxde - i3-wm - i3-gaps - dwm - deepin)
 
-case $(echo "$Desktop_GUI" |tr [:upper:] [:lower:]) in
-	"gnome" )
-	
-	arch-chroot /mnt pacman -Syu --noconfirm --needed xorg xorg-server
-	arch-chroot /mnt pacman -Syu --noconfirm --needed gnome
-	arch-chroot /mnt systemctl start gdm.service
-	arch-chroot /mnt systemctl enable gdm.service
-	arch-chroot /mnt systemctl enable NetworkManager.service
-	
-	;;
-	"kde" )
-	arch-chroot /mnt pacman -Syu --noconfirm --needed plasma-meta plasma-wayland-session kde-applications-meta
-	arch-chroot /mnt systemctl enable sddm.service
+#case $(echo "$Desktop_GUI" |tr [:upper:] [:lower:]) in
+#	"gnome" )
+#	
+#	arch-chroot /mnt pacman -Syu --noconfirm --needed xorg xorg-server
+#	arch-chroot /mnt pacman -Syu --noconfirm --needed gnome
+#	arch-chroot /mnt systemctl start gdm.service
+#	arch-chroot /mnt systemctl enable gdm.service
+#	arch-chroot /mnt systemctl enable NetworkManager.service
+#	
+#	;;
+#	"kde" )
+#	arch-chroot /mnt pacman -Syu --noconfirm --needed plasma-meta plasma-wayland-session kde-applications-meta
+#	arch-chroot /mnt systemctl enable sddm.service
+#
+#	;;
+#	"xfce" )
+#	arch-chroot /mnt pacman -Syu --noconfirm --needed xfce4 xfce4-goodies lightdm lightdm-gtk-greeter xorg-server
+#	arch-chroot /mnt systemctl enable lightdm.service
+#	
+#	;;
+#	"mate" )
+#	arch-chroot /mnt pacman -Syu --noconfirm --needed mate mate-extra lightdm lightdm-gtk-greeter xorg-server
+#	arch-chroot /mnt systemctl enable lightdm.service
+#
+#	;;
+#	"cinnamon" )
+#	arch-chroot /mnt pacman -Syu --noconfirm --needed cinnamon lightdm lightdm-gtk-greeter xorg-server
+#	arch-chroot /mnt systemctl enable lightdm.service
+#
+#	;;
+#	"lxde" )
+#	arch-chroot /mnt pacman -Syu --noconfirm --needed lxde lxdm
+#	arch-chroot /mnt systemctl enable lxdm.service
+#
+#	;;
+#	"i3-wm" )
+#	arch-chroot /mnt pacman -Syu --noconfirm --needed i3-wm i3blocks i3lock i3status dmenu rxvt-unicode lightdm lightdm-gtk-greeter xorg-server
+#	arch-chroot /mnt systemctl enable lightdm.service
+#
+#	;;
+#	"i3-gaps" )
+#	arch-chroot /mnt pacman -Syu --noconfirm --needed i3-gaps i3blocks i3lock i3status dmenu rxvt-unicode lightdm lightdm-gtk-greeter xorg-server
+#	arch-chroot /mnt systemctl enable lightdm.service
+#
+#	;;
+#	"dwm" )
+#
+#
+#
+#	;;
+#	"deepin" )
+#
+#
+#
+#	;;
+#	*)
+#
 
-	;;
-	"xfce" )
-	arch-chroot /mnt pacman -Syu --noconfirm --needed xfce4 xfce4-goodies lightdm lightdm-gtk-greeter xorg-server
-	arch-chroot /mnt systemctl enable lightdm.service
-	
-	;;
-	"mate" )
-	arch-chroot /mnt pacman -Syu --noconfirm --needed mate mate-extra lightdm lightdm-gtk-greeter xorg-server
-	arch-chroot /mnt systemctl enable lightdm.service
+#	;;
+#	esac
 
-	;;
-	"cinnamon" )
-	arch-chroot /mnt pacman -Syu --noconfirm --needed cinnamon lightdm lightdm-gtk-greeter xorg-server
-	arch-chroot /mnt systemctl enable lightdm.service
-
-	;;
-	"lxde" )
-	arch-chroot /mnt pacman -Syu --noconfirm --needed lxde lxdm
-	arch-chroot /mnt systemctl enable lxdm.service
-
-	;;
-	"i3-wm" )
-	arch-chroot /mnt pacman -Syu --noconfirm --needed i3-wm i3blocks i3lock i3status dmenu rxvt-unicode lightdm lightdm-gtk-greeter xorg-server
-	arch-chroot /mnt systemctl enable lightdm.service
-
-	;;
-	"i3-gaps" )
-	arch-chroot /mnt pacman -Syu --noconfirm --needed i3-gaps i3blocks i3lock i3status dmenu rxvt-unicode lightdm lightdm-gtk-greeter xorg-server
-	arch-chroot /mnt systemctl enable lightdm.service
-
-	;;
-	"dwm" )
-
-
-
-	;;
-	"deepin" )
-
-
-
-	;;
-	*)
-
-
-	;;
-	esac
-
-arch-chroot /mnt systemctl set-default graphical.target
+#arch-chroot /mnt systemctl set-default graphical.target
 
 
 clear
