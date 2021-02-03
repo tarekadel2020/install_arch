@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 set -e
 
 
@@ -19,10 +19,10 @@ User_Name="tarek"
 
 
 if [ $(echo "$Bios_Type" |tr [:upper:] [:lower:]) = "uefi" ]; then
-       [-z $Boot_Partiton ] || mkfs.fat -n ESP -F32 $Boot_Partiton
+       [-z $Boot_Partiton ] && mkfs.fat -n ESP -F32 $Boot_Partiton
 fi
 if [ $(echo "$Bios_Type" |tr [:upper:] [:lower:]) = "bios" ]; then
-        [-z $Boot_Partiton ] || mkfs.ext4 -L boot $Boot_Partiton
+        [-z $Boot_Partiton ] && mkfs.ext4 -L boot $Boot_Partiton
 fi
 
 mkfs.ext4 $Root_Partiton
