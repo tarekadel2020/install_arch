@@ -25,14 +25,19 @@ if [ $(echo "$Bios_Type" |tr [:upper:] [:lower:]) = "bios" ]; then
         [-z $Boot_Partiton ] && mkfs.ext4 -L boot $Boot_Partiton
 fi
 
-[ -z $Home_Partiton ] && mkdir /mnt/home
+## [ -z $Home_Partiton ] && mkdir /mnt/home
 
 mkfs.ext4 $Root_Partiton
 
-[ -z $Home_Partiton ] && mkfs.ext4 $Home_Partiton
+## [ -z $Home_Partiton ] && mkfs.ext4 $Home_Partiton
 
 mkswap $Swap_Partiton
 
+if [ ! -z $Home_Partiton ];then
+	makdir /mnt/home
+	mkfs.ext4 $Home_Partiton
+	mount $Home_Partiton /mnt/home
+fi
 
 
 # pacman -S reflector
@@ -41,7 +46,7 @@ cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 
 mount $Root_Partiton /mnt
 
-[ -z $Home_Partiton ] && mount $Home_Partiton /mnt/home
+## [ -z $Home_Partiton ] && mount $Home_Partiton /mnt/home
 
 swapon $Swap_Partiton
 
