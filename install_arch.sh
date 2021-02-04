@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 set -e
 
 
@@ -11,7 +11,7 @@ Root_Partiton="/dev/sda1"
 Home_Partiton=""
 Swap_Partiton="/dev/sda2"
 Timezone="Africa/Cairo"
-Desktop_GUI="xfce"  ## (gnome - kde - xfce - mate - cinnamon - lxde - i3-wm - i3-gaps - dwm)
+Desktop_GUI="gnome"  ## (gnome - kde - xfce - mate - cinnamon - lxde - i3-wm - i3-gaps - dwm)
 User_Name="tarek"
 
 
@@ -125,9 +125,12 @@ case $(echo "$Desktop_GUI" |tr [:upper:] [:lower:]) in
 	"gnome" )
 	
 	arch-chroot /mnt pacman -Syu --noconfirm --needed xorg xorg-server
-	arch-chroot /mnt pacman -Syu --noconfirm --needed gnome gnome-tweaks nautilus-sendto gnome-nettool gnome-usage gnome multi-writer adwaita-icon-theme chrome-gnome-shell xdg-user-dirs-gtk fwupd arc-gtk-theme seahosrse gdm
+	arch-chroot /mnt pacman -Syu --noconfirm --needed gnome gdm
+	sleep 3
 	arch-chroot /mnt systemctl start gdm.service
+	sleep 3
 	arch-chroot /mnt systemctl enable gdm.service
+	sleep 3
 	arch-chroot /mnt systemctl enable NetworkManager.service
 	
 	;;
