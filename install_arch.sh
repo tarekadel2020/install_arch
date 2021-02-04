@@ -11,7 +11,7 @@ Root_Partiton="/dev/sda1"
 Home_Partiton=""
 Swap_Partiton="/dev/sda2"
 Timezone="Africa/Cairo"
-Desktop_GUI="gnome"  ## (gnome - kde - xfce - mate - cinnamon - lxde - i3-wm - i3-gaps - dwm)
+Desktop_GUI="xfce"  ## (gnome - kde - xfce - mate - cinnamon - lxde - i3-wm - i3-gaps - dwm)
 User_Name="tarek"
 
 
@@ -66,10 +66,18 @@ arch-chroot /mnt  echo LANG=en_US.UTF-8 > /etc/locale.conf
 #arch-chroot /mnt  export LANG=en_US.UTF-8
 
 
+arch-chroot /mnt ln -s /usr/share/zoneinfo/$Timezone /etc/localtime
+
+
+clear
+
+echo "Enter Password For Root :"
 
 arch-chroot /mnt passwd
 
 arch-chroot /mnt useradd -m -G wheel,storage,optical,audio,video,root -s /bin/bash $User_Name
+
+echo "Enter Password For $User_Name : "
 
 arch-chroot /mnt passwd $User_Name
 
@@ -112,6 +120,89 @@ fi
 ##  Desktop Environment ##
 
 ## (gnome - kde - xfce - mate - cinnamon - lxde - i3-wm - i3-gaps - dwm - deepin)
+
+case $(echo "$Desktop_GUI" |tr [:upper:] [:lower:]) in
+	"gnome" )
+	
+	arch-chroot /mnt pacman -Syu --noconfirm --needed xorg xorg-server
+	arch-chroot /mnt pacman -Syu --noconfirm --needed gnome gnome-tweaks nautilus-sendto gnome-nettool gnome-usage gnome multi-writer adwaita-icon-theme chrome-gnome-shell xdg-user-dirs-gtk fwupd arc-gtk-theme seahosrse gdm
+	arch-chroot /mnt systemctl start gdm.service
+	arch-chroot /mnt systemctl enable gdm.service
+	arch-chroot /mnt systemctl enable NetworkManager.service
+	
+	;;
+	"kde" )
+	arch-chroot /mnt pacman -Syu --noconfirm --needed xorg plasma plasma-meta plasma-wayland-session kde-applications-meta sddm
+	arch-chroot /mnt systemctl enable sddm.service
+	arch-chroot /mnt systemctl enable NetworkManager.service
+
+	;;
+	"xfce" )
+	arch-chroot /mnt pacman -Syu --noconfirm --needed xfce4 xfce4-goodies lightdm lightdm-gtk-greeter xorg-server
+	arch-chroot /mnt systemctl enable lightdm.service
+	arch-chroot /mnt systemctl enable NetworkManager.service
+	
+	## xfce4 mousepad parole ristretto thunar-archive-plugin thunar-media-tags-plugin xfce4-battery-plugin xfce4-datetime-plugin xfce4-mount-plugin xfce4-netload-plugin xfce4-notifyd xfce4-pulseaudio-plugin xfce4-screensaver xfce4-taskmanager xfce4-wavelan-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xfce4-xkb-plugin file-roller network-manager-applet leafpad epdfview galculator lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings capitaine-cursors arc-gtk-theme xdg-user-dirs-gtk ##
+	
+	
+	;;
+	"mate" )
+	arch-chroot /mnt pacman -Syu --noconfirm --needed mate mate-extra lightdm lightdm-gtk-greeter xorg-server
+	arch-chroot /mnt systemctl enable lightdm.service
+	arch-chroot /mnt systemctl enable NetworkManager.service
+
+	;;
+	"cinnamon" )
+	arch-chroot /mnt pacman -Syu --noconfirm --needed cinnamon lightdm lightdm-gtk-greeter xorg-server
+	arch-chroot /mnt systemctl enable lightdm.service
+	arch-chroot /mnt systemctl enable NetworkManager.service
+
+	;;
+	"lxde" )
+	arch-chroot /mnt pacman -Syu --noconfirm --needed lxde lxdm
+	arch-chroot /mnt systemctl enable lxdm.service
+
+	;;
+	"i3-wm" )
+	arch-chroot /mnt pacman -Syu --noconfirm --needed i3-wm i3blocks i3lock i3status dmenu rxvt-unicode lightdm lightdm-gtk-greeter xorg-server
+	arch-chroot /mnt systemctl enable lightdm.service
+
+	;;
+	"i3-gaps" )
+	arch-chroot /mnt pacman -Syu --noconfirm --needed i3-gaps i3blocks i3lock i3status dmenu rxvt-unicode lightdm lightdm-gtk-greeter xorg-server
+	arch-chroot /mnt systemctl enable lightdm.service
+
+	;;
+	"dwm" )
+
+
+
+	;;
+	"deepin" )
+
+
+
+	;;
+	*)
+
+
+	;;
+	esac
+
+
+
+
+clear
+
+echo "install Arch linux is successfully"
+sleep 5
+
+exit
+
+
+
+
+
 
 #case $(echo "$Desktop_GUI" |tr [:upper:] [:lower:]) in
 #	"gnome" )
@@ -175,11 +266,3 @@ fi
 #	esac
 
 #arch-chroot /mnt systemctl set-default graphical.target
-
-
-clear
-
-echo "install Arch linux is successfully"
-sleep 5
-
-exit
