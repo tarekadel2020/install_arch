@@ -11,7 +11,7 @@ Root_Partiton="/dev/sda1"
 Home_Partiton=""
 Swap_Partiton="/dev/sda2"
 Timezone="Africa/Cairo"
-Desktop_GUI="xfce"  ## (gnome - kde - xfce - mate - cinnamon - lxde - i3-wm - i3-gaps - dwm)
+Desktop_GUI="dwm"  ## (gnome - kde - xfce - mate - cinnamon - lxde - i3-wm - i3-gaps - dwm)
 User_Name="tarek"
 
 wifi_name=""
@@ -195,8 +195,26 @@ case $(echo "$Desktop_GUI" |tr [:upper:] [:lower:]) in
 
 	;;
 	"dwm" )
+	arch-chroot /mnt pacman -Syu --noconfirm --needed base-devel libx11 libxft xorg-server xorg-xinit xorg-xrandr xorg-xsetroot
+	arch-chroot /mnt mkdir /home/$User_Name/.config
+	
+	arch-chroot /mnt git clone git://git.suckless.org/dwm /home/$User_Name/.config
+	arch-chroot /mnt cd /home/$User_Name/.config/dwm && make clean install
+	
+	arch-chroot /mnt git clone git://git.suckless.org/st /home/$User_Name/.config
+	arch-chroot /mnt cd /home/$User_Name/.config/st && make clean install
+	
+	arch-chroot /mnt git clone git://git.suckless.org/dmenu /home/$User_Name/.config
+	arch-chroot /mnt cd /home/$User_Name/.config/dmenu && make clean install
+	
+	arch-chroot /mnt pacman -Syu --noconfirm --needed lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+	sleep 3
+	arch-chroot /mnt systemctl enable lightdm.service
+	arch-chroot /mnt mkdir /usr/share/xsessions
+	arch-chroot /mnt echo -e "[Desktop Entry]\nEncoding=UTF-8\nName=Dwm\nComment=Dynamic window manager\nExec=dwm\nIcon=dwm\nType=XSession" > ./dwm.desktop
 
-
+	## APPS ##
+	arch-chroot /mnt pacman -Syu --noconfirm --needed ttf-font-awesome alsa-utils firefox nitrogen htop ntfs-3g vlc sxhkd 
 
 	;;
 	"deepin" )
