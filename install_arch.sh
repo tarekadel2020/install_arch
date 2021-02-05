@@ -11,18 +11,31 @@ Root_Partiton="/dev/sda1"
 Home_Partiton=""
 Swap_Partiton="/dev/sda2"
 Timezone="Africa/Cairo"
-Desktop_GUI="gnome"  ## (gnome - kde - xfce - mate - cinnamon - lxde - i3-wm - i3-gaps - dwm)
+Desktop_GUI="xfce"  ## (gnome - kde - xfce - mate - cinnamon - lxde - i3-wm - i3-gaps - dwm)
 User_Name="tarek"
 
+wifi_name=""
+wifi_pass=""
 
 ## All Variable ##
+## wifi ##
 
+if [ ! -z $wifi_name ] && [ ! -z $wifi_pass] ;then
+    wpa_passphrase $wifi_name $wifi_pass > ./my-wifi.conf
+    wpa_supplicant -B -i wlan0 -c ./my-wifi.conf
+    
+    # wpa_supplicant -B -i interface -c <(wpa_passphrase MYSSID passphrase)
+    dhcp
+fi
+
+
+## wifi ##
 
 if [ $(echo "$Bios_Type" |tr [:upper:] [:lower:]) = "uefi" ]; then
-       [-z $Boot_Partiton ] && mkfs.fat -n ESP -F32 $Boot_Partiton
+       [ ! -z $Boot_Partiton ] && mkfs.fat -n ESP -F32 $Boot_Partiton
 fi
 if [ $(echo "$Bios_Type" |tr [:upper:] [:lower:]) = "bios" ]; then
-        [-z $Boot_Partiton ] && mkfs.ext4 -L boot $Boot_Partiton
+        [ ! -z $Boot_Partiton ] && mkfs.ext4 -L boot $Boot_Partiton
 fi
 
 ## [ -z $Home_Partiton ] && mkdir /mnt/home
@@ -33,18 +46,20 @@ mkfs.ext4 $Root_Partiton
 
 mkswap $Swap_Partiton
 
+# pacman -S reflector
+
+cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+
+
+mount $Root_Partiton /mnt
+
+
 if [ ! -z $Home_Partiton ];then
 	makdir /mnt/home
 	mkfs.ext4 $Home_Partiton
 	mount $Home_Partiton /mnt/home
 fi
 
-
-# pacman -S reflector
-
-cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
-
-mount $Root_Partiton /mnt
 
 ## [ -z $Home_Partiton ] && mount $Home_Partiton /mnt/home
 
@@ -56,7 +71,6 @@ pacstrap /mnt base base-devel linux linux-firmware vim nano net-tools
 ## pacstrap /mnt base base-devel linux linux-firmware vim nano
 
 genfstab -U /mnt >> /mnt/etc/fstab
-
 
 
 arch-chroot /mnt timedatectl set-timezone $Timezone
@@ -120,7 +134,6 @@ fi
 
 
 ## MY install Grub ##
-
 
 ##  Desktop Environment ##
 
