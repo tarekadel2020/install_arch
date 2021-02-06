@@ -199,13 +199,9 @@ case $(echo "$Desktop_GUI" |tr [:upper:] [:lower:]) in
 	arch-chroot /mnt mkdir /home/$User_Name/.config
 	
 	arch-chroot /mnt git clone git://git.suckless.org/dwm /home/$User_Name/.config
-	arch-chroot /mnt cd /home/$User_Name/.config/dwm && make clean install
-	
 	arch-chroot /mnt git clone git://git.suckless.org/st /home/$User_Name/.config
-	arch-chroot /mnt cd /home/$User_Name/.config/st && make clean install
-	
 	arch-chroot /mnt git clone git://git.suckless.org/dmenu /home/$User_Name/.config
-	arch-chroot /mnt cd /home/$User_Name/.config/dmenu && make clean install
+	# arch-chroot /mnt cd /home/$User_Name/.config/dmenu && make clean install
 	
 	arch-chroot /mnt pacman -Syu --noconfirm --needed lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
 	sleep 3
@@ -214,7 +210,7 @@ case $(echo "$Desktop_GUI" |tr [:upper:] [:lower:]) in
 	arch-chroot /mnt echo -e "[Desktop Entry]\nEncoding=UTF-8\nName=Dwm\nComment=Dynamic window manager\nExec=dwm\nIcon=dwm\nType=XSession" > ./dwm.desktop
 
 	## APPS ##
-	arch-chroot /mnt pacman -Syu --noconfirm --needed ttf-font-awesome alsa-utils firefox nitrogen htop ntfs-3g vlc sxhkd 
+	# arch-chroot /mnt pacman -Syu --noconfirm --needed ttf-font-awesome alsa-utils firefox nitrogen htop ntfs-3g vlc sxhkd 
 
 	;;
 	"deepin" )
