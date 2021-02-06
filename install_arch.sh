@@ -197,17 +197,20 @@ case $(echo "$Desktop_GUI" |tr [:upper:] [:lower:]) in
 	"dwm" )
 	arch-chroot /mnt pacman -Syu --noconfirm --needed base-devel libx11 libxft xorg-server xorg-xinit xorg-xrandr xorg-xsetroot
 	arch-chroot /mnt mkdir /home/$User_Name/.config
+	arch-chroot /mnt mkdir /home/$User_Name/.config/dwm
+	arch-chroot /mnt mkdir /home/$User_Name/.config/st
+	arch-chroot /mnt mkdir /home/$User_Name/.config/dmenu
 	
-	arch-chroot /mnt git clone git://git.suckless.org/dwm /home/$User_Name/.config
-	arch-chroot /mnt git clone git://git.suckless.org/st /home/$User_Name/.config
-	arch-chroot /mnt git clone git://git.suckless.org/dmenu /home/$User_Name/.config
+	arch-chroot /mnt git clone git://git.suckless.org/dwm /home/$User_Name/.config/dwm
+	arch-chroot /mnt git clone git://git.suckless.org/st /home/$User_Name/.config/st
+	arch-chroot /mnt git clone git://git.suckless.org/dmenu /home/$User_Name/.config/dmenu
 	# arch-chroot /mnt cd /home/$User_Name/.config/dmenu && make clean install
 	
 	arch-chroot /mnt pacman -Syu --noconfirm --needed lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
 	sleep 3
 	arch-chroot /mnt systemctl enable lightdm.service
 	arch-chroot /mnt mkdir /usr/share/xsessions
-	arch-chroot /mnt echo -e "[Desktop Entry]\nEncoding=UTF-8\nName=Dwm\nComment=Dynamic window manager\nExec=dwm\nIcon=dwm\nType=XSession" > ./dwm.desktop
+	arch-chroot /mnt echo -e "[Desktop Entry]\nEncoding=UTF-8\nName=Dwm\nComment=Dynamic window manager\nExec=dwm\nIcon=dwm\nType=XSession" > /usr/share/xsessions/dwm.desktop
 
 	## APPS ##
 	# arch-chroot /mnt pacman -Syu --noconfirm --needed ttf-font-awesome alsa-utils firefox nitrogen htop ntfs-3g vlc sxhkd 
