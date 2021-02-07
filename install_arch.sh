@@ -233,9 +233,18 @@ if [ $accept_gui == "y" ] || [ $accept_gui == "Y" ] ; then
 				sleep 3
 				arch-chroot /mnt systemctl enable lightdm.service
 				arch-chroot /mnt mkdir /usr/share/xsessions
+				sleep 1
+				arch-chroot /mnt touch /usr/share/xsessions/dwm.desktop
+				sleep 2
 				arch-chroot /mnt echo -e "[Desktop Entry]\nEncoding=UTF-8\nName=Dwm\nComment=Dynamic window manager\nExec=dwm\nIcon=dwm\nType=XSession" > /usr/share/xsessions/dwm.desktop
+				sleep 2
+				arch-chroot /mnt touch /home/$User_Name/.dmrc
+				sleep 2
 				arch-chroot /mnt echo -e "[Desktop]\nSession=dwm" > /home/$User_Name/.dmrc
-
+				
+				
+				
+				
 
 				## APPS ##
 				## arch-chroot /mnt pacman -Syu --noconfirm --needed ttf-font-awesome alsa-utils firefox nitrogen htop ntfs-3g vlc sxhkd ##
