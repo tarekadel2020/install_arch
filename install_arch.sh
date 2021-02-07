@@ -241,10 +241,10 @@ if [ $accept_gui == "y" ] || [ $accept_gui == "Y" ] ; then
 				arch-chroot /mnt touch /home/$User_Name/.dmrc
 				sleep 2
 				echo -e "[Desktop]\nSession=dwm" > /mnt/home/$User_Name/.dmrc
-				sleep 2
-				arch-chroot /mnt cp /etc/X11/xinit/xinitrc /home/$User_Name/.xinitrc
-				sleep 2 
-				arch-chroot /mnt sed -i 's/exec xterm -geometry 80x66+0+0 -name login/exec dwm' /home/$User_Name/.xinitrc
+				#sleep 2
+				#arch-chroot /mnt cp /etc/X11/xinit/xinitrc /home/$User_Name/.xinitrc
+				#sleep 2 
+				#arch-chroot /mnt sed -i 's/exec xterm -geometry 80x66+0+0 -name login/exec dwm' /home/$User_Name/.xinitrc
 				
 				
 				
