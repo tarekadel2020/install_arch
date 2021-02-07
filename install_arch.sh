@@ -18,6 +18,15 @@ wifi_name=""
 wifi_pass=""
 
 ## All Variable ##
+
+# ask install base or install desktop #
+
+
+
+
+
+# ask install base or install desktop #
+
 ## wifi ##
 
 if [ ! -z $wifi_name ] && [ ! -z $wifi_pass] ;then
@@ -243,71 +252,3 @@ echo "install Arch linux is successfully"
 sleep 5
 
 exit
-
-
-
-
-
-
-#case $(echo "$Desktop_GUI" |tr [:upper:] [:lower:]) in
-#	"gnome" )
-#	
-#	arch-chroot /mnt pacman -Syu --noconfirm --needed xorg xorg-server
-#	arch-chroot /mnt pacman -Syu --noconfirm --needed gnome
-#	arch-chroot /mnt systemctl start gdm.service
-#	arch-chroot /mnt systemctl enable gdm.service
-#	arch-chroot /mnt systemctl enable NetworkManager.service
-#	
-#	;;
-#	"kde" )
-#	arch-chroot /mnt pacman -Syu --noconfirm --needed plasma-meta plasma-wayland-session kde-applications-meta
-#	arch-chroot /mnt systemctl enable sddm.service
-#
-#	;;
-#	"xfce" )
-#	arch-chroot /mnt pacman -Syu --noconfirm --needed xfce4 xfce4-goodies lightdm lightdm-gtk-greeter xorg-server
-#	arch-chroot /mnt systemctl enable lightdm.service
-#	
-#	;;
-#	"mate" )
-#	arch-chroot /mnt pacman -Syu --noconfirm --needed mate mate-extra lightdm lightdm-gtk-greeter xorg-server
-#	arch-chroot /mnt systemctl enable lightdm.service
-#
-#	;;
-#	"cinnamon" )
-#	arch-chroot /mnt pacman -Syu --noconfirm --needed cinnamon lightdm lightdm-gtk-greeter xorg-server
-#	arch-chroot /mnt systemctl enable lightdm.service
-#
-#	;;
-#	"lxde" )
-#	arch-chroot /mnt pacman -Syu --noconfirm --needed lxde lxdm
-#	arch-chroot /mnt systemctl enable lxdm.service
-#
-#	;;
-#	"i3-wm" )
-#	arch-chroot /mnt pacman -Syu --noconfirm --needed i3-wm i3blocks i3lock i3status dmenu rxvt-unicode lightdm lightdm-gtk-greeter xorg-server
-#	arch-chroot /mnt systemctl enable lightdm.service
-#
-#	;;
-#	"i3-gaps" )
-#	arch-chroot /mnt pacman -Syu --noconfirm --needed i3-gaps i3blocks i3lock i3status dmenu rxvt-unicode lightdm lightdm-gtk-greeter xorg-server
-#	arch-chroot /mnt systemctl enable lightdm.service
-#
-#	;;
-#	"dwm" )
-#
-#
-#
-#	;;
-#	"deepin" )
-#
-#
-#
-#	;;
-#	*)
-#
-
-#	;;
-#	esac
-
-#arch-chroot /mnt systemctl set-default graphical.target
