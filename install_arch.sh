@@ -236,11 +236,11 @@ if [ $accept_gui == "y" ] || [ $accept_gui == "Y" ] ; then
 				sleep 1
 				arch-chroot /mnt touch /usr/share/xsessions/dwm.desktop
 				sleep 2
-				arch-chroot /mnt echo -e "[Desktop Entry]\nEncoding=UTF-8\nName=Dwm\nComment=Dynamic window manager\nExec=dwm\nIcon=dwm\nType=XSession" > /usr/share/xsessions/dwm.desktop
+				echo -e "[Desktop Entry]\nEncoding=UTF-8\nName=Dwm\nComment=Dynamic window manager\nExec=dwm\nIcon=dwm\nType=XSession" > /mnt/usr/share/xsessions/dwm.desktop
 				sleep 2
 				arch-chroot /mnt touch /home/$User_Name/.dmrc
 				sleep 2
-				arch-chroot /mnt echo -e "[Desktop]\nSession=dwm" > /home/$User_Name/.dmrc
+				echo -e "[Desktop]\nSession=dwm" > /mnt/home/$User_Name/.dmrc
 				sleep 2
 				arch-chroot /mnt cp /etc/X11/xinit/xinitrc /home/$User_Name/.xinitrc
 				sleep 2 
