@@ -23,7 +23,7 @@ wifi_pass=""
 
 read -p "Are you install base ? [Y-N]" accept_base
 
-if [ $accept_base="y" || $accept_base="Y"] ; then
+if [ $accept_base == "y" ] || [ $accept_base == "Y"] ; then
 
 		# ask install base or install desktop #
 
@@ -152,7 +152,7 @@ fi
 
 
 read -p "Are you install gui ? [Y-N]" accept_gui
-if [ $accept_gui="y" || $accept_gui="Y" ] ; then
+if [ $accept_gui == "y" ] || [ $accept_gui == "Y" ] ; then
 
 		##  Desktop Environment ##
 
