@@ -215,9 +215,13 @@ if [ $accept_gui == "y" ] || [ $accept_gui == "Y" ] ; then
 			"dwm")
 				arch-chroot /mnt pacman -Syu --noconfirm --needed base-devel libx11 libxft xorg-server xorg-xinit xorg-xrandr xorg-xsetroot
 				arch-chroot /mnt mkdir /home/$User_Name/.config
+				chown 1000:1000 /mnt/home/$User_Name/.config
 				arch-chroot /mnt mkdir /home/$User_Name/.config/dwm
+				chown 1000:1000 /mnt/home/$User_Name/.config/dwm
 				arch-chroot /mnt mkdir /home/$User_Name/.config/st
+				chown 1000:1000 /mnt/home/$User_Name/.config/st
 				arch-chroot /mnt mkdir /home/$User_Name/.config/dmenu
+				chown 1000:1000 /mnt/home/$User_Name/.config/dmenu
 
 				arch-chroot /mnt git clone git://git.suckless.org/dwm /home/$User_Name/.config/dwm
 				arch-chroot /mnt git clone git://git.suckless.org/st /home/$User_Name/.config/st
@@ -238,9 +242,20 @@ if [ $accept_gui == "y" ] || [ $accept_gui == "Y" ] ; then
 				sleep 2
 				echo -e "[Desktop Entry]\nEncoding=UTF-8\nName=Dwm\nComment=Dynamic window manager\nExec=dwm\nIcon=dwm\nType=XSession" > /mnt/usr/share/xsessions/dwm.desktop
 				sleep 2
-				arch-chroot /mnt touch /home/$User_Name/.dmrc
-				sleep 2
+				touch /mnt/home/$User_Name/.dmrc
+				chown 1000:1000 /mnt/home/$User_Name/.dmrc
 				echo -e "[Desktop]\nSession=dwm" > /mnt/home/$User_Name/.dmrc
+				
+				
+				mkdir /mnt/home/$User_Name/.config/sxhkd
+				chown 1000:1000 /mnt/home/$User_Name/.config/sxhkd
+				touch /mnt/home/$User_Name/.config/sxhkd/sxhkdrc
+				chown 1000:1000 /mnt/home/$User_Name/.config/sxhkd/sxhkdrc
+				touch /mnt/home/$User_Name/.profile
+				chown 1000:1000 /mnt/home/$User_Name/.profile
+				echo -e "nitrogen --restore &\nsxhkd" > /mnt/home/$User_Name/.profile
+				
+				
 				#sleep 2
 				#arch-chroot /mnt cp /etc/X11/xinit/xinitrc /home/$User_Name/.xinitrc
 				#sleep 2 
@@ -251,7 +266,7 @@ if [ $accept_gui == "y" ] || [ $accept_gui == "Y" ] ; then
 				
 
 				## APPS ##
-				## arch-chroot /mnt pacman -Syu --noconfirm --needed ttf-font-awesome alsa-utils firefox nitrogen htop ntfs-3g vlc sxhkd ##
+				arch-chroot /mnt pacman -Syu --noconfirm --needed ttf-font-awesome alsa-utils firefox nitrogen htop ntfs-3g vlc sxhkd thunar 
 				
 				;;
 			
