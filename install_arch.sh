@@ -91,7 +91,7 @@ if [ $accept_base == "y" ] || [ $accept_base == "Y"] ; then
 
 		arch-chroot /mnt  echo LANG=en_US.UTF-8 > /etc/locale.conf
 		arch-chroot /mnt  echo "arch" > /etc/hostname
-		arch-chroot /mnt  echo -e " " >> /etc/hosts
+		arch-chroot /mnt  echo -e "127.0.0.1	localhost\n::1	localhost\n127.0.1.1	arch.localdomain	arch" >> /etc/hosts
 
 		#arch-chroot /mnt  export LANG=en_US.UTF-8
 
@@ -113,7 +113,7 @@ if [ $accept_base == "y" ] || [ $accept_base == "Y"] ; then
 
 
 
-		arch-chroot /mnt pacman -Syu --noconfirm --needed sudo wget git dhcpcd
+		arch-chroot /mnt pacman -Syu --noconfirm --needed sudo wget git dhcpcd networkmanager network-manager-applet wireless_tools wpa_supplicant ntfs-3g
 
 		arch-chroot /mnt sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
 
@@ -128,7 +128,7 @@ if [ $accept_base == "y" ] || [ $accept_base == "Y"] ; then
 
 			arch-chroot /mnt pacman -Syu --noconfirm --needed  grub
 
-			arch-chroot /mnt grub-install $hard
+			arch-chroot /mnt grub-install --target=i386-pc $hard
 
 			arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 		fi
@@ -143,6 +143,9 @@ if [ $accept_base == "y" ] || [ $accept_base == "Y"] ; then
 
 		fi
 
+
+
+	arch-chroot /mnt systemctl enable NetworkManager
 
 		## MY install Grub ##
 else
@@ -298,6 +301,11 @@ echo "install Arch linux is successfully"
 sleep 5
 
 exit
+
+
+
+## surce
+## https://www.youtube.com/watch?v=cwrw5t8Q0ZE
 
 
 
