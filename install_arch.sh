@@ -144,8 +144,9 @@ if [ $accept_base == "y" ] || [ $accept_base == "Y"] ; then
 		fi
 
 
-
+        sleep 2
 	arch-chroot /mnt systemctl enable NetworkManager
+        sleep 5
 
 		## MY install Grub ##
 else
