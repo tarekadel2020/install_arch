@@ -90,6 +90,8 @@ if [ $accept_base == "y" ] || [ $accept_base == "Y"] ; then
 		arch-chroot /mnt  locale-gen
 
 		arch-chroot /mnt  echo LANG=en_US.UTF-8 > /etc/locale.conf
+		arch-chroot /mnt  echo "arch" > /etc/hostname
+		arch-chroot /mnt  echo -e " " >> /etc/hosts
 
 		#arch-chroot /mnt  export LANG=en_US.UTF-8
 
