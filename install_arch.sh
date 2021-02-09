@@ -124,7 +124,7 @@ if [ $accept_base == "y" ] || [ $accept_base == "Y"] ; then
 
 		## MY install Grub ##
 
-		if [ $(echo "$Bios_Type" |tr [:upper:] [:lower:]) = "bios" ]; then
+		if [ $(echo "$Bios_Type" | tr [:upper:] [:lower:]) = "bios" ]; then
 
 			arch-chroot /mnt pacman -Syu --noconfirm --needed  grub
 
@@ -132,7 +132,7 @@ if [ $accept_base == "y" ] || [ $accept_base == "Y"] ; then
 
 			arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 		fi
-		if [ $(echo "$Bios_Type" |tr [:upper:] [:lower:]) = "uefi" ]; then
+		if [ $(echo "$Bios_Type" | tr [:upper:] [:lower:]) = "uefi" ]; then
 
 			arch-chroot /mnt pacman -Syu --noconfirm --needed grub efibootmgr
 			arch-chroot /mnt  mkdir /boot/efi
@@ -238,11 +238,17 @@ if [ $accept_gui == "y" ] || [ $accept_gui == "Y" ] ; then
 				#arch-chroot /mnt cd /home/$User_Name/.config/dmenu && make clean install
 				#sleep 2
 
-				arch-chroot /mnt pacman -Syu --noconfirm --needed lightdm lightdm-gtk-greeter  ## lightdm-gtk-greeter-settings
-				sleep 3
-				arch-chroot /mnt systemctl start lightdm.service
-				sleep 3
-				arch-chroot /mnt systemctl enable lightdm.service
+
+
+				#arch-chroot /mnt pacman -Syu --noconfirm --needed lightdm lightdm-gtk-greeter  ## lightdm-gtk-greeter-settings
+				#sleep 3
+				#arch-chroot /mnt systemctl start lightdm.service
+				#sleep 3
+				#arch-chroot /mnt systemctl enable lightdm.service
+
+
+
+
 				arch-chroot /mnt mkdir /usr/share/xsessions
 				sleep 1
 				arch-chroot /mnt touch /usr/share/xsessions/dwm.desktop
