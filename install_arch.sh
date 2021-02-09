@@ -231,14 +231,16 @@ if [ $accept_gui == "y" ] || [ $accept_gui == "Y" ] ; then
 				arch-chroot /mnt git clone git://git.suckless.org/dwm /home/$User_Name/.config/dwm
 				arch-chroot /mnt git clone git://git.suckless.org/st /home/$User_Name/.config/st
 				arch-chroot /mnt git clone git://git.suckless.org/dmenu /home/$User_Name/.config/dmenu
-				arch-chroot /mnt cd /home/$User_Name/.config/dwm && make clean install
-				sleep 2
-				arch-chroot /mnt cd /home/$User_Name/.config/st && make clean install
-				sleep 2
-				arch-chroot /mnt cd /home/$User_Name/.config/dmenu && make clean install
-				sleep 2
+				#arch-chroot /mnt cd /home/$User_Name/.config/dwm && make clean install
+				#sleep 2
+				#arch-chroot /mnt cd /home/$User_Name/.config/st && make clean install
+				#sleep 2
+				#arch-chroot /mnt cd /home/$User_Name/.config/dmenu && make clean install
+				#sleep 2
 
-				arch-chroot /mnt pacman -Syu --noconfirm --needed lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+				arch-chroot /mnt pacman -Syu --noconfirm --needed lightdm lightdm-gtk-greeter  ## lightdm-gtk-greeter-settings
+				sleep 3
+				arch-chroot /mnt systemctl start lightdm.service
 				sleep 3
 				arch-chroot /mnt systemctl enable lightdm.service
 				arch-chroot /mnt mkdir /usr/share/xsessions
