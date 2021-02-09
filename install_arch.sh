@@ -232,6 +232,8 @@ if [ $accept_gui == "y" ] || [ $accept_gui == "Y" ] ; then
 				arch-chroot /mnt git clone git://git.suckless.org/dwm /home/$User_Name/.config/dwm
 				arch-chroot /mnt git clone git://git.suckless.org/st /home/$User_Name/.config/st
 				arch-chroot /mnt git clone git://git.suckless.org/dmenu /home/$User_Name/.config/dmenu
+				
+				
 				#arch-chroot /mnt cd /home/$User_Name/.config/dwm && make clean install
 				#sleep 2
 				#arch-chroot /mnt cd /home/$User_Name/.config/st && make clean install
@@ -241,11 +243,11 @@ if [ $accept_gui == "y" ] || [ $accept_gui == "Y" ] ; then
 
 
 
-				#arch-chroot /mnt pacman -Syu --noconfirm --needed lightdm lightdm-gtk-greeter  ## lightdm-gtk-greeter-settings
-				#sleep 3
-				#arch-chroot /mnt systemctl start lightdm.service
-				#sleep 3
-				#arch-chroot /mnt systemctl enable lightdm.service
+				arch-chroot /mnt pacman -Syu --noconfirm --needed lightdm lightdm-gtk-greeter  ## lightdm-gtk-greeter-settings
+				sleep 3
+				arch-chroot /mnt systemctl start lightdm.service
+				sleep 3
+				arch-chroot /mnt systemctl enable lightdm.service
 
 
 
@@ -267,13 +269,13 @@ if [ $accept_gui == "y" ] || [ $accept_gui == "Y" ] ; then
 				chown 1000:1000 /mnt/home/$User_Name/.config/sxhkd/sxhkdrc
 				touch /mnt/home/$User_Name/.profile
 				chown 1000:1000 /mnt/home/$User_Name/.profile
-				echo -e "nitrogen --restore &\nsxhkd" > /mnt/home/$User_Name/.profile
+				echo -e "dwm &\nnitrogen --restore &\nsxhkd" > /mnt/home/$User_Name/.profile
 				
 				
-				#sleep 2
-				#arch-chroot /mnt cp /etc/X11/xinit/xinitrc /home/$User_Name/.xinitrc
-				#sleep 2 
-				#arch-chroot /mnt sed -i 's/exec xterm -geometry 80x66+0+0 -name login/exec dwm' /home/$User_Name/.xinitrc
+				sleep 2
+				cp /etc/X11/xinit/xinitrc /mnt/home/$User_Name/.xinitrc
+				chown 1000:1000 /mnt/home/$User_Name/.xinitrc
+				arch-chroot /mnt sed -i 's/exec xterm -geometry 80x66+0+0 -name login/exec dwm' /mnt/home/$User_Name/.xinitrc
 				
 				
 				
