@@ -269,7 +269,8 @@ if [ $accept_gui == "y" ] || [ $accept_gui == "Y" ] ; then
 				chown 1000:1000 /mnt/home/$User_Name/.config/sxhkd/sxhkdrc
 				touch /mnt/home/$User_Name/.profile
 				chown 1000:1000 /mnt/home/$User_Name/.profile
-				echo -e "dwm &\nnitrogen --restore &\nsxhkd" > /mnt/home/$User_Name/.profile
+				echo -e "nitrogen --restore &\nsxhkd" > /mnt/home/$User_Name/.profile
+				## echo -e "dwm &\nnitrogen --restore &\nsxhkd" > /mnt/home/$User_Name/.profile
 				
 				
 				sleep 2
