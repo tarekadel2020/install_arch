@@ -302,21 +302,16 @@ else
 fi
 
 		
-
-
-
-
-
 clear
-
 echo "install Arch linux is successfully"
 sleep 5
 
 exit
 
+## Nots ##
+# to install dwm , st , dmenu   by    sudo su  &  make clean install
 
-
-## surce
+## surce ##
 ## https://www.youtube.com/watch?v=cwrw5t8Q0ZE
 ## https://www.youtube.com/watch?v=m8dbJwyYz0E
 
