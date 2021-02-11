@@ -306,7 +306,9 @@ sleep 5
 exit
 
 ## Nots ##
-# to install dwm , st , dmenu   by    sudo su  &  make clean install
+# to install dwm , st , dmenu   by    sudo su  &  make clean install  OR  install By root user
+# nmtui 
+
 
 ## surce ##
 ## https://www.youtube.com/watch?v=cwrw5t8Q0ZE
