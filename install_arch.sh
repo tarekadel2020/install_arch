@@ -88,9 +88,14 @@ if [ $accept_base == "y" ] || [ $accept_base == "Y"] ; then
 		arch-chroot /mnt sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 
 		arch-chroot /mnt  locale-gen
-
+		
+		arch-chroot /mnt touch /etc/locale.conf
 		arch-chroot /mnt  echo LANG=en_US.UTF-8 > /etc/locale.conf
+		
+		arch-chroot /mnt touch /etc/hostname
 		arch-chroot /mnt  echo "arch" > /etc/hostname
+		
+		arch-chroot /mnt touch /etc/hosts
 		arch-chroot /mnt  echo -e "127.0.0.1	localhost\n::1	localhost\n127.0.1.1	arch.localdomain	arch" >> /etc/hosts
 
 		#arch-chroot /mnt  export LANG=en_US.UTF-8
