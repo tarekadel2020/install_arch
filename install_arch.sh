@@ -280,7 +280,7 @@ if [ $accept_gui == "y" ] || [ $accept_gui == "Y" ] ; then
 				
 
 				## APPS ##
-				arch-chroot /mnt pacman -Syu --noconfirm --needed ttf-font-awesome alsa-utils firefox nitrogen htop ntfs-3g vlc sxhkd thunar zathura zathura-pdf-poppler
+				arch-chroot /mnt pacman -Syu --noconfirm --needed ttf-font-awesome alsa-utils firefox nitrogen htop ntfs-3g vlc sxhkd thunar zathura zathura-pdf-poppler feh mypaint man
 				
 				;;
 			
