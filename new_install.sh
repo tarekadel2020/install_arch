@@ -22,12 +22,15 @@ wifi_pass=""
 
 
 boot_partiton(){
-	if [ $(echo "$Bios_Type" |tr [:upper:] [:lower:]) = "uefi" ]; then
-		[ ! -z $Boot_Partiton ] && mkfs.fat -n ESP -F32 $Boot_Partiton
-	fi
+	if [ ! -z $Boot_Partiton ]; then
 
-	if [ $(echo "$Bios_Type" |tr [:upper:] [:lower:]) = "bios" ]; then
-		[ ! -z $Boot_Partiton ] && mkfs.ext4 -L boot $Boot_Partiton
+		if [ $(echo "$Bios_Type" |tr [:upper:] [:lower:]) = "uefi" ]; then
+			mkfs.fat -n ESP -F32 $Boot_Partiton
+		fi
+
+		if [ $(echo "$Bios_Type" |tr [:upper:] [:lower:]) = "bios" ]; then
+			mkfs.ext4 -L boot $Boot_Partiton
+		fi
 	fi
 }
 
@@ -48,10 +51,10 @@ home_partiton(){
 }
 
 mount(){
-	cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
-	mount $Root_Partiton /mnt
-	swapon $Swap_Partiton
-	home_partiton
+	  cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+	# mount $Root_Partiton /mnt
+	  swapon $Swap_Partiton
+	  home_partiton
 }
 
 base(){
