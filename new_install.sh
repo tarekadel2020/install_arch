@@ -11,7 +11,7 @@ Root_Partiton="/dev/sda1"
 Home_Partiton=""
 Swap_Partiton="/dev/sda2"
 Timezone="Africa/Cairo"
-Desktop_GUI="dwm"  ## (gnome - kde - xfce - mate - cinnamon - lxde - i3-wm - i3-gaps - dwm)
+Desktop_GUI="dwm"  ## (gnome - kde - xfce - mate - cinnamon - lxde - i3-wm - i3-gaps - dwm - openbox)
 User_Name="tarek"
 
 wifi_name=""
@@ -55,7 +55,7 @@ Mount(){
 	cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 	mount $Root_Partiton /mnt
 	swapon $Swap_Partiton
-	home_partiton
+	Home_partiton
 }
 
 Base(){
@@ -244,11 +244,11 @@ DWM(){
 
 }
 DEEPIN(){
-
+	echo deepin
 }
 
 OPENBOX(){
-
+	echo openbox
 }
 
 Ask_install_Gui(){
