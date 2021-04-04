@@ -248,7 +248,7 @@ DEEPIN(){
 }
 
 OPENBOX(){
-	arch-chroot /mnt pacman -Syu --noconfirm --needed xorg-server lightdm lightdm-gtk-greeter
+	arch-chroot /mnt pacman -Syu --noconfirm --needed xorg-server xorg-xinit xorg-xrandr xorg-xsetroot lightdm lightdm-gtk-greeter
 	arch-chroot /mnt pacman -Syu --noconfirm --needed openbox obconf  thunar firefox xfce4-terminal tint2 gmrun geany vlc qmmp nitrogen man 
 	arch-chroot /mnt mkdir /home/$User_Name/.config/
 	arch-chroot /mnt mkdir /home/$User_Name/.config/openbox
