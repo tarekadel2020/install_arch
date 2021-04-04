@@ -248,11 +248,18 @@ DEEPIN(){
 }
 
 OPENBOX(){
-	arch-chroot /mnt pacman -Syu --noconfirm --needed xorg-server xorg-xinit xorg-xrandr xorg-xsetroot lightdm lightdm-gtk-greeter
+	arch-chroot /mnt pacman -Syu --noconfirm --needed xorg-server lightdm lightdm-gtk-greeter
 	arch-chroot /mnt pacman -Syu --noconfirm --needed openbox obconf  thunar firefox xfce4-terminal tint2 gmrun geany vlc qmmp nitrogen man 
-	arch-chroot /mnt mkdir /home/$User_Name/.config/
 	arch-chroot /mnt mkdir /home/$User_Name/.config/openbox
 	chown 1000:1000 /mnt/home/$User_Name/.config/openbox
+	arch-chroot /mnt systemctl start lightdm.service
+	arch-chroot /mnt systemctl enable lightdm.service
+
+
+	
+	#touch /mnt/home/$User_Name/.dmrc
+	#chown 1000:1000 /mnt/home/$User_Name/.dmrc
+	#echo -e "[Desktop]\nSession=dwm" > /mnt/home/$User_Name/.dmrc
 }
 
 Ask_install_Gui(){
