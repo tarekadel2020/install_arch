@@ -11,7 +11,7 @@ Root_Partiton="/dev/sda1"
 Home_Partiton=""
 Swap_Partiton="/dev/sda2"
 Timezone="Africa/Cairo"
-Desktop_GUI="dwm"  ## (gnome - kde - xfce - mate - cinnamon - lxde - i3-wm - i3-gaps - dwm - openbox)
+Desktop_GUI=""  ## (gnome - kde - xfce - mate - cinnamon - lxde - i3-wm - i3-gaps - dwm - openbox)
 User_Name="tarek"
 
 wifi_name=""
@@ -248,7 +248,10 @@ DEEPIN(){
 }
 
 OPENBOX(){
-	echo openbox
+	arch-chroot /mnt pacman -Syu --noconfirm --needed xorg-server lightdm lightdm-gtk-greeter
+	arch-chroot /mnt pacman -Syu --noconfirm --needed openbox obconf  thunar firefox xfce4-terminal tint2 gmrun geany vlc qmmp nitrogen man 
+	arch-chroot /mnt mkdir /home/$User_Name/.config/openbox
+	chown 1000:1000 /mnt/home/$User_Name/.config/openbox
 }
 
 Ask_install_Gui(){
