@@ -90,7 +90,7 @@ Wheel(){
 }
 
 App(){
-	arch-chroot /mnt pacman -Syu --noconfirm --needed sudo wget git dhcpcd networkmanager network-manager-applet wireless_tools wpa_supplicant ntfs-3g os-prober
+	arch-chroot /mnt pacman -Syu --noconfirm --needed sudo wget git dhcpcd networkmanager network-manager-applet wireless_tools wpa_supplicant ntfs-3g os-prober firefox
 	arch-chroot /mnt systemctl enable NetworkManager
 }
 
