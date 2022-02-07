@@ -263,7 +263,9 @@ OPENBOX(){
 }
 
 Budgie(){
-	arch-chroot /mnt pacman -Syu --noconfirm --needed xorg-server lightdm lightdm-gtk-greeter
+	arch-chroot /mnt pacman -Syu --noconfirm --needed xorg-server xorg-apps xorg-xinit xterm lightdm lightdm-gtk-greeter
+	arch-chroot /mnt systemctl start lightdm.service
+	arch-chroot /mnt systemctl enable lightdm.service
 	arch-chroot /mnt pacman -Syu --noconfirm --needed budgie-desktop nautilus gnome-control-center budgie-extras
 	
 }
