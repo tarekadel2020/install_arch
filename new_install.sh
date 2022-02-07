@@ -11,7 +11,7 @@ Root_Partiton="/dev/sda1"
 Home_Partiton=""
 Swap_Partiton="/dev/sda2"
 Timezone="Africa/Cairo"
-Desktop_GUI=""  ## (gnome - kde - xfce - mate - cinnamon - lxde - i3-wm - i3-gaps - dwm - openbox)
+Desktop_GUI=""  ## (budgie - gnome - kde - xfce - mate - cinnamon - lxde - i3-wm - i3-gaps - dwm - openbox)
 User_Name="tarek"
 
 wifi_name=""
@@ -262,6 +262,12 @@ OPENBOX(){
 	#echo -e "[Desktop]\nSession=dwm" > /mnt/home/$User_Name/.dmrc
 }
 
+Budgie(){
+	arch-chroot /mnt pacman -Syu --noconfirm --needed xorg-server lightdm lightdm-gtk-greeter
+	arch-chroot /mnt pacman -Syu --noconfirm --needed budgie-desktop nautilus gnome-control-center budgie-extras
+	
+}
+
 Ask_install_Gui(){
 	read -p "Are you install gui ? [Y-N]" accept_gui
 	if [ $accept_gui == "y" ] || [ $accept_gui == "Y" ] ; then
@@ -298,6 +304,9 @@ Ask_install_Gui(){
 			;;
 			"openbox" )
 				OPENBOX
+			;;
+			"budgie" )
+				Budgie
 			;;
 		esac				
 	
