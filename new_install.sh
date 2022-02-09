@@ -267,7 +267,11 @@ Budgie(){
 	arch-chroot /mnt systemctl start lightdm.service
 	arch-chroot /mnt systemctl enable lightdm.service
 	arch-chroot /mnt pacman -Syu --noconfirm --needed budgie-desktop budgie-desktop-viwe budgie-screensave nautilus gnome-control-center budgie-extras xfce4-terminal alsa-utils gedit dconf-editor
-	
+	clear
+	read -p "Are you Want Budgi like windows 11 ? [Y-N]" accept_window
+	if [ $accept_window == "y" ] || [ $accept_window == "Y" ] ; then
+		Windows_11
+	fi
 }
 
 Ask_install_Gui(){
@@ -319,6 +323,10 @@ Ask_install_Gui(){
 fi
 }
 
+Windows_11(){
+	
+
+}
 
 Main(){
 
