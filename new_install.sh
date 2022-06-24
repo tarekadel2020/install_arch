@@ -125,6 +125,29 @@ Grub(){
 
 }
 
+Micorcode (){
+echo -ne "
+-------------------------------------------------------------------------
+                    Installing Microcode
+-------------------------------------------------------------------------
+"
+	# determine processor type and install microcode
+	proc_type=$(lscpu)
+	if grep -E "GenuineIntel" <<< ${proc_type}; then
+    		echo "Installing Intel microcode"
+    		arch-chroot /mnt pacman -Syu --noconfirm intel-ucode
+    		proc_ucode=intel-ucode.img
+	elif grep -E "AuthenticAMD" <<< ${proc_type}; then
+    		echo "Installing AMD microcode"
+    		arch-chroot /mnt pacman -Syu --noconfirm amd-ucode
+    		proc_ucode=amd-ucode.img
+    	else
+    		echo "Your CPU Not Supported"
+    		sleep 2
+	fi
+
+}
+
 Ask_install_base(){
 	read -p "Are you install base ? [Y-N]" accept_base
 	if [ $(echo "$accept_base" |tr [:upper:] [:lower:]) = "y" ]; then
@@ -132,10 +155,11 @@ Ask_install_base(){
 		Make_partitons
 		Mount
 		Base
+		Grub
 		Add_user
 		Wheel
 		App
-		Grub
+		Micorcode
 	fi
 }
 
