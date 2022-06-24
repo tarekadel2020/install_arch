@@ -52,6 +52,13 @@ Home_partiton(){
 }
 
 Mount(){
+	sudo pacman -Syy
+	sudo pacman -S reflector
+	reflector --sort rate -l 5 --save /etc/pacman.d/mirrorlist
+	pacman -Syy
+	## mkdir /mnt &>/dev/null                  # Hiding error message if any
+
+
 	cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 	mount $Root_Partiton /mnt
 	swapon $Swap_Partiton
@@ -92,6 +99,8 @@ Wheel(){
 App(){
 	arch-chroot /mnt pacman -Syu --noconfirm --needed sudo wget git dhcpcd networkmanager network-manager-applet wireless_tools wpa_supplicant ntfs-3g os-prober firefox
 	arch-chroot /mnt systemctl enable NetworkManager
+	arch-chroot /mnt pacman -Syu --noconfirm --needed ttf-font-awesome alsa-utils firefox ntfs-3g vlc man
+
 }
 
 Grub(){
@@ -152,7 +161,9 @@ XFCE(){
 	arch-chroot /mnt pacman -Syu --noconfirm --needed xfce4 xfce4-goodies lightdm lightdm-gtk-greeter xorg-server
 	arch-chroot /mnt systemctl enable lightdm.service
 	arch-chroot /mnt systemctl enable NetworkManager.service
-     ## xfce4 mousepad parole ristretto thunar-archive-plugin thunar-media-tags-plugin xfce4-battery-plugin xfce4-datetime-plugin xfce4-mount-plugin xfce4-netload-plugin xfce4-notifyd xfce4-pulseaudio-plugin xfce4-screensaver xfce4-taskmanager xfce4-wavelan-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xfce4-xkb-plugin file-roller network-manager-applet leafpad epdfview galculator lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings capitaine-cursors arc-gtk-theme xdg-user-dirs-gtk ##
+	## APP
+        arch-chroot /mnt pacman -Syu --noconfirm --needed mousepad xfce4-screensaver xfce4-taskmanager xfce4-whiskermenu-plugin network-manager-applet epdfview
+	## parole ristretto thunar-archive-plugin thunar-media-tags-plugin xfce4-battery-plugin xfce4-datetime-plugin xfce4-mount-plugin xfce4-netload-plugin xfce4-notifyd xfce4-pulseaudio-plugin xfce4-screensaver xfce4-taskmanager xfce4-wavelan-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xfce4-xkb-plugin file-roller network-manager-applet leafpad epdfview galculator lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings capitaine-cursors arc-gtk-theme xdg-user-dirs-gtk ##
 
 }
 
