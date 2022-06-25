@@ -156,11 +156,11 @@ Ask_install_base(){
 		Make_partitons
 		Mount
 		Base
-		Grub
 		Add_user
 		Wheel
 		App
 		Micorcode
+		Grub
 	fi
 }
 
