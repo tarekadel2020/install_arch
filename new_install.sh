@@ -111,7 +111,7 @@ Grub(){
 
 			arch-chroot /mnt grub-install --target=i386-pc $hard
 			
-			arch-chroot /mnt sed -i 's/#GRUB_DISABLE_OS_PROBER=false/GRUB_DISABLE_OS_PROBER=false' /etc/default/grub
+			arch-chroot /mnt sed -i 's/#GRUB_DISABLE_OS_PROBER=false/GRUB_DISABLE_OS_PROBER=false/' /etc/default/grub
 			
 			## echo "GRUB_DISABLE_OS_PROBER=false" >> /mnt/etc/default/grub
 			
