@@ -52,10 +52,10 @@ Home_partiton(){
 }
 
 Mount(){
-	sudo pacman -Syy
-	sudo pacman -S reflector
-	reflector --sort rate -l 5 --save /etc/pacman.d/mirrorlist
-	pacman -Syy
+	## sudo pacman -Syy
+	## sudo pacman -S reflector
+	## reflector --sort rate -l 5 --save /etc/pacman.d/mirrorlist
+	## pacman -Syy
 	## mkdir /mnt &>/dev/null                  # Hiding error message if any
 
 
@@ -358,10 +358,6 @@ Ask_install_Gui(){
 fi
 }
 
-Windows_11(){
-	
-
-}
 
 Main(){
 
