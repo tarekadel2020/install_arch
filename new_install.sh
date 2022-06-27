@@ -109,7 +109,7 @@ App(){
 	#####  ZSH and Config  #####
 	arch-chroot /mnt pacman -Syu --noconfirm --needed zsh zsh-completions awesome-terminal-fonts
 	arch-chroot /mnt fc-cache -f -v
-	arch-chroot /mnt curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh > /home/$User_Name/ohmyzsh_install.sh
+	curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh > /mnt/home/$User_Name/ohmyzsh_install.sh
 	chown 1000:1000 /mnt/home/$User_Name/ohmyzsh_install.sh
 	############################
 }
