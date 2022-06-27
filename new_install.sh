@@ -187,11 +187,22 @@ KDE(){
 }
 
 XFCE(){
-	arch-chroot /mnt pacman -Syu --noconfirm --needed xfce4 xfce4-goodies lightdm lightdm-gtk-greeter xorg-server
+	arch-chroot /mnt pacman -Syu --noconfirm --neede xfce4
+	arch-chroot /mnt pacman -Syu --noconfirm --neede xfwm4 xfce4-panel xfdesktop thunar xfce4-session xfce4-settings xfce4-appfinder xfce-utils xfconf
+	arch-chroot /mnt pacman -Syu --noconfirm --neede xfce4-goodies
+	arch-chroot /mnt pacman -Syu --noconfirm --neede gstreamer0.10-base-plugins
+	arch-chroot /mnt pacman -Syu --noconfirm --neede dbus
+	arch-chroot /mnt pacman -Syu --noconfirm --neede lightdm lightdm-gtk-greeter
 	arch-chroot /mnt systemctl enable lightdm.service
-	arch-chroot /mnt systemctl enable NetworkManager.service
+	
+	
+	## OLD ##
+	
+	#arch-chroot /mnt pacman -Syu --noconfirm --needed xfce4 xfce4-goodies lightdm lightdm-gtk-greeter xorg-server
+	#arch-chroot /mnt systemctl enable lightdm.service
+	#arch-chroot /mnt systemctl enable NetworkManager.service
 	## APP
-        arch-chroot /mnt pacman -Syu --noconfirm --needed mousepad xfce4-screensaver xfce4-taskmanager xfce4-whiskermenu-plugin network-manager-applet epdfview alsa-utils pulseaudio
+        #arch-chroot /mnt pacman -Syu --noconfirm --needed mousepad xfce4-screensaver xfce4-taskmanager xfce4-whiskermenu-plugin network-manager-applet epdfview alsa-utils pulseaudio
 	## parole ristretto thunar-archive-plugin thunar-media-tags-plugin xfce4-battery-plugin xfce4-datetime-plugin xfce4-mount-plugin xfce4-netload-plugin xfce4-notifyd xfce4-pulseaudio-plugin xfce4-screensaver xfce4-taskmanager xfce4-wavelan-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xfce4-xkb-plugin file-roller network-manager-applet leafpad epdfview galculator lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings capitaine-cursors arc-gtk-theme xdg-user-dirs-gtk ##
 
 }
