@@ -94,6 +94,7 @@ Wheel(){
 	read -p "Are you want give all user sudo primmion ? [Y-N]" accept_base
 	if [ $(echo "$accept_base" |tr [:upper:] [:lower:]) = "y" ]; then
 		arch-chroot /mnt sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
+		echo "$User_Name ALL=(ALL:ALL) ALL" >> /mnt/etc/sudoers
 	fi
 }
 
@@ -187,10 +188,9 @@ KDE(){
 }
 
 XFCE(){
-	arch-chroot /mnt pacman -Syu --noconfirm --neede xfce4
-	arch-chroot /mnt pacman -Syu --noconfirm --neede xfwm4 xfce4-panel xfdesktop thunar xfce4-session xfce4-settings xfce4-appfinder xfce-utils xfconf
+	arch-chroot /mnt pacman -Syu --noconfirm --neede xfce4 xorg xorg-server
+	arch-chroot /mnt pacman -Syu --noconfirm --neede xfwm4 xfce4-panel xfdesktop thunar xfce4-session xfce4-settings xfce4-appfinder xfconf
 	arch-chroot /mnt pacman -Syu --noconfirm --neede xfce4-goodies
-	arch-chroot /mnt pacman -Syu --noconfirm --neede gstreamer0.10-base-plugins
 	arch-chroot /mnt pacman -Syu --noconfirm --neede dbus
 	arch-chroot /mnt pacman -Syu --noconfirm --neede lightdm lightdm-gtk-greeter
 	arch-chroot /mnt systemctl enable lightdm.service
