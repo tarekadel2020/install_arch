@@ -99,6 +99,7 @@ Wheel(){
 }
 
 App(){
+	arch-chroot /mnt pacman -Syu --noconfirm --needed archlinux-keyring
 	arch-chroot /mnt pacman -Syu --noconfirm --needed man nano sudo wget git net-tools dhcpcd networkmanager network-manager-applet wireless_tools wpa_supplicant ntfs-3g os-prober 
 	arch-chroot /mnt systemctl enable NetworkManager
 	arch-chroot /mnt pacman -Syu --noconfirm --needed ttf-font-awesome alsa-utils firefox vlc 
@@ -106,7 +107,7 @@ App(){
 	
 	
 	#####  ZSH and Config  #####
-	arch-chroot /mnt pacman -Syu --noconfirm --needed zsh zsh-compltions awesome-terminal-fonts
+	arch-chroot /mnt pacman -Syu --noconfirm --needed zsh zsh-completions awesome-terminal-fonts
 	arch-chroot /mnt fc-cache -f -v
 	arch-chroot /mnt curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh > /home/$User_Name/ohmyzsh_install.sh
 	chown 1000:1000 /mnt/home/$User_Name/ohmyzsh_install.sh
