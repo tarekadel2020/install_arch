@@ -66,7 +66,7 @@ Mount(){
 }
 
 Base(){
-	pacstrap /mnt base base-devel linux linux-firmware vim nano net-tools
+	pacstrap /mnt base base-devel linux linux-firmware
 	genfstab -U /mnt >> /mnt/etc/fstab
 	arch-chroot /mnt timedatectl set-timezone $Timezone
 	arch-chroot /mnt sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
@@ -99,10 +99,18 @@ Wheel(){
 }
 
 App(){
-	arch-chroot /mnt pacman -Syu --noconfirm --needed sudo wget git dhcpcd networkmanager network-manager-applet wireless_tools wpa_supplicant ntfs-3g os-prober firefox
+	arch-chroot /mnt pacman -Syu --noconfirm --needed man nano sudo wget git net-tools dhcpcd networkmanager network-manager-applet wireless_tools wpa_supplicant ntfs-3g os-prober 
 	arch-chroot /mnt systemctl enable NetworkManager
-	arch-chroot /mnt pacman -Syu --noconfirm --needed ttf-font-awesome alsa-utils firefox ntfs-3g vlc man
-
+	arch-chroot /mnt pacman -Syu --noconfirm --needed ttf-font-awesome alsa-utils firefox vlc 
+	arch-chroot /mnt pacman -Syu --noconfirm --needed zip unzip unrar tar
+	
+	
+	#####  ZSH and Config  #####
+	arch-chroot /mnt pacman -Syu --noconfirm --needed zsh zsh-compltions awesome-terminal-fonts
+	arch-chroot /mnt fc-cache -f -v
+	arch-chroot /mnt curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh > /home/$User_Name/ohmyzsh_install.sh
+	chown 1000:1000 /mnt/home/$User_Name/ohmyzsh_install.sh
+	############################
 }
 
 Grub(){
@@ -194,6 +202,9 @@ XFCE(){
 	arch-chroot /mnt pacman -Syu --noconfirm --neede dbus
 	arch-chroot /mnt pacman -Syu --noconfirm --neede lightdm lightdm-gtk-greeter
 	arch-chroot /mnt systemctl enable lightdm.service
+	arch-chroot /mnt pacman -Syu --noconfirm --neede thunar-archive-plugin file-roller galculator pulseaudio
+	
+	
 	
 	
 	## OLD ##
