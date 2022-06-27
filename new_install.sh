@@ -72,11 +72,11 @@ Base(){
 	arch-chroot /mnt sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 	arch-chroot /mnt  locale-gen
 	arch-chroot /mnt touch /etc/locale.conf
-	arch-chroot /mnt  echo LANG=en_US.UTF-8 > /etc/locale.conf
+	echo "LANG=en_US.UTF-8" > /mnt/etc/locale.conf
 	arch-chroot /mnt touch /etc/hostname
-	arch-chroot /mnt  echo "arch" > /etc/hostname
+	echo "arch" > /mnt/etc/hostname
 	arch-chroot /mnt touch /etc/hosts
-	arch-chroot /mnt  echo -e "127.0.0.1	localhost\n::1	localhost\n127.0.1.1	arch.localdomain	arch" >> /etc/hosts
+	echo -e "127.0.0.1	localhost\n::1	localhost\n127.0.1.1	arch.localdomain	arch" >> /mnt/etc/hosts
 	arch-chroot /mnt ln -s /usr/share/zoneinfo/$Timezone /etc/localtime
 	arch-chroot /mnt pacman -Syu --noconfirm --needed archlinux-keyring
 }
