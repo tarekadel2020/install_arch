@@ -104,6 +104,7 @@ App(){
 	arch-chroot /mnt systemctl enable NetworkManager
 	arch-chroot /mnt pacman -Syu --noconfirm --needed ttf-font-awesome alsa-utils firefox vlc 
 	arch-chroot /mnt pacman -Syu --noconfirm --needed zip unzip unrar tar
+	arch-chroot /mnt pacman -Syu --noconfirm --needed zathura zathura-pdf-poppler
 	
 	
 	#####  ZSH and Config  #####
@@ -303,7 +304,7 @@ DWM(){
 				
 
 	## APPS ##
-	arch-chroot /mnt pacman -Syu --noconfirm --needed ttf-font-awesome alsa-utils firefox nitrogen htop ntfs-3g vlc sxhkd thunar zathura zathura-pdf-poppler feh mypaint man
+	arch-chroot /mnt pacman -Syu --noconfirm --needed ttf-font-awesome alsa-utils firefox nitrogen htop ntfs-3g vlc sxhkd thunar thunar-archive-plugin file-roller zathura zathura-pdf-poppler feh mypaint man
 
 }
 DEEPIN(){
