@@ -105,7 +105,7 @@ App(){
 	arch-chroot /mnt pacman -Syu --noconfirm --needed ttf-font-awesome alsa-utils firefox vlc 
 	arch-chroot /mnt pacman -Syu --noconfirm --needed zip unzip unrar tar
 	arch-chroot /mnt pacman -Syu --noconfirm --needed zathura zathura-pdf-poppler
-	
+	mkdir /mnt/media
 	
 	#####  ZSH and Config  #####
 	arch-chroot /mnt pacman -Syu --noconfirm --needed zsh zsh-completions awesome-terminal-fonts
