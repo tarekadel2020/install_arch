@@ -106,7 +106,9 @@ App(){
 	arch-chroot /mnt pacman -Syu --noconfirm --needed zip unzip unrar tar
 	arch-chroot /mnt pacman -Syu --noconfirm --needed zathura zathura-pdf-poppler
 	mkdir /mnt/media
-	arch-chroot /mnt pacman -Syu --noconfirm --needed udisks2 polkit ntfs-3g
+	arch-chroot /mnt pacman -Syu --noconfirm --needed udisks2 udiskie polkit ntfs-3g
+	
+	
 	
 	#####  ZSH and Config  #####
 	arch-chroot /mnt pacman -Syu --noconfirm --needed zsh zsh-completions awesome-terminal-fonts
