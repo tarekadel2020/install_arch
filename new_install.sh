@@ -82,6 +82,7 @@ Base(){
 }
 
 Add_user(){
+	arch-chroot /mnt pacman -Syu --noconfirm --needed xdg-user-dirs-gtk xdg-user-dirs
 	clear
 	echo "Enter Password For Root :"
 	arch-chroot /mnt passwd
@@ -212,7 +213,7 @@ XFCE(){
 	arch-chroot /mnt pacman -Syu --noconfirm --neede xfwm4 xfce4-panel xfdesktop thunar xfce4-session xfce4-settings xfce4-appfinder xfconf
 	arch-chroot /mnt pacman -Syu --noconfirm --neede xfce4-goodies
 	arch-chroot /mnt pacman -Syu --noconfirm --neede dbus
-	arch-chroot /mnt pacman -Syu --noconfirm --neede lightdm lightdm-gtk-greeter
+	arch-chroot /mnt pacman -Syu --noconfirm --neede lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
 	arch-chroot /mnt systemctl enable lightdm.service
 	arch-chroot /mnt pacman -Syu --noconfirm --neede thunar-archive-plugin file-roller galculator pulseaudio pulseaudio-bluetooth pavucontrol 
 	
