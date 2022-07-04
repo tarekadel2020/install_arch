@@ -108,7 +108,13 @@ App(){
 	## mkdir /mnt/media
 	
 	arch-chroot /mnt pacman -Syu --noconfirm --needed udisks2 udiskie polkit ntfs-3g
-	arch-chroot /mnt pacman -Syu --noconfirm --needed mtpfs gvfs-mtp gvfs-gphoto2 
+	arch-chroot /mnt pacman -Syu --noconfirm --needed mtpfs gvfs-mtp gvfs-gphoto2           ### Auto Mount USB
+	
+	
+	
+	arch-chroot /mnt pacman -Syu --noconfirm --needed bluez bluez-utils blueman             ###  Bluetooth 
+	arch-chroot /mnt systemctl enable bluetooth.service
+	
 	
 	
 	#####  ZSH and Config  #####
