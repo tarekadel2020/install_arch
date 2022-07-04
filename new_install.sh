@@ -214,7 +214,7 @@ XFCE(){
 	arch-chroot /mnt pacman -Syu --noconfirm --neede dbus
 	arch-chroot /mnt pacman -Syu --noconfirm --neede lightdm lightdm-gtk-greeter
 	arch-chroot /mnt systemctl enable lightdm.service
-	arch-chroot /mnt pacman -Syu --noconfirm --neede thunar-archive-plugin file-roller galculator pulseaudio
+	arch-chroot /mnt pacman -Syu --noconfirm --neede thunar-archive-plugin file-roller galculator pulseaudio pulseaudio-bluetooth pavucontrol 
 	
 	
 	
